@@ -1,1 +1,1 @@
-# api-storeeasy
+# api-storeasy
