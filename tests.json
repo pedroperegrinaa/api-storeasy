@@ -1,0 +1,19 @@
+{
+    "cartCode": "1234",
+    "paymentType": "credit_card",
+    "installments": 5,
+    "costumerName": "Pedro",
+    "costumerEmail": "pedropedro@gmail.com",
+    "costumerMobile": "(73) 3288-1522",
+    "costumerDocument": "637.164.500-57",
+    "billingAddress": "aaa",
+    "billingNumber": "aaa",
+    "billingNeighborhood": "aaa",
+    "billingCity": "aaa",
+    "billingState": "aaa",
+    "billingZipCode": "aaa",
+    "creditCardNumber": "5470 4463 1137 7969",
+    "creditCardExpiration": "28/04/2024",
+    "creditCardHolderName": "PEDRO PEDROSO",
+    "creditCardCvv": "356"
+}

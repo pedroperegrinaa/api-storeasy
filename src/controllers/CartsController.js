@@ -7,7 +7,7 @@ class CartsController {
       const carts = await Cart.find();
       return res.status(200).json(carts);
     } catch (error) {
-      return res.status(500).json({ error: "Internal server error." });
+      return res.status(500).json({ error: error.message });
     }
   }
 
@@ -19,7 +19,7 @@ class CartsController {
       console.log(cart);
       return res.status(201).json(cart);
     } catch (error) {
-      return res.status(500).json({ error: "Internal server error." });
+      return res.status(500).json({ error: error.message });
     }
   }
 
@@ -44,7 +44,7 @@ class CartsController {
 
       return res.status(200).json(cart);
     } catch (error) {
-      return res.status(500).json({ error: "Internal server error." });
+      return res.status(500).json({ error: error.message });
     }
   }
 
@@ -66,10 +66,11 @@ class CartsController {
       } else {
         cart.deleteOne();
       }
+      console.log("aaa");
 
       return res.status(200).json(cart);
     } catch (error) {
-      return res.status(500).json({ error: "Internal server error." });
+      return res.status(500).json({ error: error.message });
     }
   }
 }
