@@ -2669,6 +2669,11 @@ package-json@^6.3.0:
     registry-url "^5.0.0"
     semver "^6.2.0"
 
+pagarme@^4.23.1:
+  version "4.23.1"
+  resolved "https://registry.yarnpkg.com/pagarme/-/pagarme-4.23.1.tgz#0367c2e76be08d94ffaa4585fe12c1199a7cf3ed"
+  integrity sha512-GLTZEA6WgBd5YvFMZwkgoAUzaR+8B4YWDWVg+rBRVRhl46sIGcvfwznR1ykVHvcK7YUHJwUgfxoosZw245TY8Q==
+
 parse-json@^5.2.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/parse-json/-/parse-json-5.2.0.tgz#c76fc66dee54231c962b22bcc8a72cf2f99753cd"
@@ -3377,6 +3382,11 @@ utils-merge@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/utils-merge/-/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
   integrity sha1-n5VxD1CiZ5R7LMwSR0HBAoQn5xM=
+
+uuid@^8.3.2:
+  version "8.3.2"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
+  integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
 
 v8-to-istanbul@^9.0.0:
   version "9.0.0"
