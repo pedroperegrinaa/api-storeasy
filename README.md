@@ -6,7 +6,7 @@
     <img src="https://img.shields.io/badge/swagger-6DA55F?style=for-the-badge&logo=swagger&logoColor=white&color=#62A03F"/>
 </p>
 
-## Rodando o projeto
+## Criando o ambiente
 
     git clone https://github.com/pedroperegrinaa/api-storeasy.git
     cd api-storeasy
@@ -14,6 +14,8 @@
     echo "MONGODB_URI=" >> .env
     echo "PAGARME_WEBHOOK_URL=" >> .env
     echo "PAGARME_API_KEY=" >> env #ainda não tenho a key
+
+## Rodando o projeto
 
     yarn install
     yarn start
