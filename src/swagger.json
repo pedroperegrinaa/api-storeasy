@@ -1,0 +1,144 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Storeasy API",
+        "description": "API do sistema de pagamentos da Storeasy",
+        "contact": {
+            "email": "pedrosilva1p333@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:5000",
+            "description": "test API"
+        }
+    ],
+    "paths": {
+        "/carts": {
+            "get": {
+                "summary": "Carts",
+                "description": "Lista todos os carrinhos",
+                "tags": [
+                    "Carts"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "error"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Carts",
+                "description": "Cria um carrinho no banco de dados (o code não pode ser repetido)",
+                "tags": [
+                    "Carts"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "ref": "#/components/schemas/Cart",
+                                "example": {
+                                    "code": 1,
+                                    "price": 22
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "error"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Carts",
+                "description": "Atualiza um carrinho no banco de dados (é necessário passar o _id que você pode coletar no get)",
+                "tags": [
+                    "Carts"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "id do carrinho",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "ref": "#/components/schemas/Cart",
+                                "example": {
+                                    "code": 1,
+                                    "price": 22
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "error"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Carts",
+                "description": "Atualiza um carrinho no banco de dados",
+                "tags": [
+                    "Carts"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "id do carrinho",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "error"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Carts": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "number"
+                    },
+                    "price": {
+                        "type": "number"
+                    }
+                }
+            }
+        }
+    }
+}

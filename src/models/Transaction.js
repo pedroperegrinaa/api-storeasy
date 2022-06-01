@@ -41,7 +41,7 @@ const schema = new mongoose.Schema(
     transactionId: {
       type: String,
     },
-    processResponse: {
+    processorResponse: {
       type: String,
     },
     costumerEmail: {

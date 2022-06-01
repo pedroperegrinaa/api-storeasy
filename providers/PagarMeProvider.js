@@ -1,4 +1,5 @@
 import { cpf } from "cpf-cnpj-validator";
+import { response } from "express";
 import pagarme from "pagarme";
 
 class PagarMeProvider {
@@ -21,6 +22,7 @@ class PagarMeProvider {
       payment_method: "credit_card",
       amount: total * 100,
       installments,
+      card_holder_name: creditCard.holderName,
       card_number: creditCard.number.replace(/[^?0-9]/g, ""),
       card_expiration_date: creditCard.expiration.replace(/[^?0-9]/g, ""),
       cvv: creditCard.cvv,
@@ -106,7 +108,7 @@ class PagarMeProvider {
 
     const transactionParams = {
       async: false,
-      // postback_url: '',
+      postback_url: process.env.PAGARME_POSTBACK_URL,
       ...paymentParams,
       ...costumerParams,
       ...billingParams,
@@ -121,6 +123,34 @@ class PagarMeProvider {
     // const response = await client.transactions.create(transactionParams);
 
     console.debug("transactionParams", transactionParams);
+
+    return {
+      transactionID: response.id,
+      status: this.translateStatus(response.status),
+      billet: {
+        url: response.boleto_url,
+        barcode: response.boleto_barcode,
+      },
+      card: {
+        id: response.card?.id,
+      },
+      processorResponse: JSON.stringify(response),
+    };
+  }
+
+  translateStatus(status) {
+    const statusMap = {
+      processing: "processing",
+      waiting_payment: "pending",
+      authorized: "pending",
+      paid: "approved",
+      refused: "refused",
+      pending_refund: "refunded",
+      refunded: "refunded",
+      charged_back: "chargedback",
+    };
+
+    return statusMap[status] || "unknown";
   }
 }
 

@@ -1,53 +1,59 @@
-# API Storeasy
+<center><h1>API de Pagamentos Storeasy</h1></center>
 
-**CartsController:**
+<p align="center">
+    <img src="https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white&color=#2C682C"/>
+    <img src="https://img.shields.io/badge/mongodb-6DA55F?style=for-the-badge&logo=mongodb&logoColor=white&color=#023430"/>
+    <img src="https://img.shields.io/badge/swagger-6DA55F?style=for-the-badge&logo=swagger&logoColor=white&color=#62A03F"/>
+</p>
 
-### GET
+## Rodando o projeto
 
-    GET /carts
+    git clone https://github.com/pedroperegrinaa/api-storeasy.git
+    cd api-storeasy
+    echo "PORT=5000" >> .env
+    echo "MONGODB_URI=" >> .env
+    echo "PAGARME_WEBHOOK_URL=" >> .env
+    echo "PAGARME_API_KEY=" >> env #ainda não tenho a key
 
-<pre><code>[
-	{
-		"_id": "62914da8b91a7dc1f64e31b0",
-		"code": "1234",
-		"price": 22,
-		"createdAt": "2022-05-27T22:16:08.812Z",
-		"updatedAt": "2022-05-27T22:16:08.812Z",
-		"__v": 0
-	}
-]
-</code></pre>
+    yarn install
+    yarn start
 
-Response: return all carts
+Futuramente o `docker-compose.yml` será criado.
 
-### POST
+## Swagger
 
-    POST /carts
+<!-- ```diff
 
-<pre><code>{
-	"code": "1234",
-	"price": 22,
-	"_id": "62914da8b91a7dc1f64e31b0",
-	"createdAt": "2022-05-27T22:16:08.812Z",
-	"updatedAt": "2022-05-27T22:16:08.812Z",
-	"__v": 0
-}
-</code></pre>
+@@ /carts @@
 
-create a cart on database
++ /GET
++ /POST
+- /PUT
+- /DELETE
 
-### UPDATE
+@@ /transactions @@
 
-    PUT /carts
+- /POST
 
-<pre><code>{
-	"code": "1234",
-	"price": 22,
-	"_id": "62914da8b91a7dc1f64e31b0",
-	"createdAt": "2022-05-27T22:16:08.812Z",
-	"updatedAt": "2022-05-27T22:16:08.812Z",
-	"__v": 0
-}
-</code></pre>
+@@ /postbacks @@
 
-create a cart on database
+- /PAGARME
+``` -->
+
+### /carts
+
+✅ /GET
+
+✅ /POST
+
+❌ /PUT
+
+❌ /DELETE
+
+### /transactions
+
+❌ /POST
+
+## Demo:
+
+Testes da API em: http://localhost:5000/doc

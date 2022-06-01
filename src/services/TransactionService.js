@@ -45,7 +45,7 @@ class TransactionService {
 
     // console.log(items);
 
-    this.paymentProvider.process({
+    const response = await this.paymentProvider.process({
       transactionCode: transaction.code,
       total: transaction.total,
       paymentType,
@@ -55,7 +55,28 @@ class TransactionService {
       billing,
     });
 
+    await transaction.updateOne({
+      transactionId: response.transactionId,
+      status: response.status,
+      processorResponse: response.processorResponse,
+    });
+
     return transaction;
+  }
+
+  async updateStatus({ code, providerStatus }) {
+    const transaction = await Transaction.findOne({ code });
+
+    if (!transaction) {
+      throw `Transaction ${code} was not found.`;
+    }
+    const status = await this.paymentProvider.translateStatus(providerStatus);
+
+    if (!status) {
+      throw `Status ${providerStatus} was not found.`;
+    }
+
+    await transaction.updateOne({ status });
   }
 }
 
