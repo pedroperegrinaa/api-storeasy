@@ -48,7 +48,7 @@ Futuramente o `docker-compose.yml` será criado.
 
 ✅ /POST
 
-❌ /PUT
+✅ /PUT
 
 ✅ /DELETE
 

@@ -34,15 +34,18 @@ class CartsController {
     }
 
     try {
-      const cart = await Cart.findById(id);
+      let cart = await Cart.findById(id);
+      console.log(cart);
 
       if (!cart) {
         return res.status(400).json({ error: "Carrinho não existe." });
       } else {
-        cart.updateOne({ code, price });
-      }
+        console.log({ code, price });
+        cart = await Cart.findByIdAndUpdate(id, { code, price }, { new: true });
 
-      return res.status(200).json(cart);
+        console.log(cart);
+        return res.status(200).json(cart);
+      }
     } catch (error) {
       return res.status(500).json({ error: error.message });
     }
