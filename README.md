@@ -50,7 +50,7 @@ Futuramente o `docker-compose.yml` será criado.
 
 ❌ /PUT
 
-❌ /DELETE
+✅ /DELETE
 
 ### /transactions
 

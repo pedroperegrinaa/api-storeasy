@@ -58,7 +58,9 @@
                         "description": "error"
                     }
                 }
-            },
+            }
+        },
+        "/carts/{id}": {
             "put": {
                 "summary": "Carts",
                 "description": "Atualiza um carrinho no banco de dados (é necessário passar o _id que você pode coletar no get)",
@@ -68,7 +70,7 @@
                 "parameters": [
                     {
                         "name": "id",
-                        "in": "query",
+                        "in": "path",
                         "description": "id do carrinho",
                         "required": true,
                         "schema": {
@@ -107,7 +109,7 @@
                 "parameters": [
                     {
                         "name": "id",
-                        "in": "query",
+                        "in": "path",
                         "description": "id do carrinho",
                         "required": true,
                         "schema": {
