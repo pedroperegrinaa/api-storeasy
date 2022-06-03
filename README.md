@@ -52,6 +52,16 @@ Futuramente o `docker-compose.yml` será criado.
 
 ✅ /DELETE
 
+### /clients
+
+✅ /GET
+
+✅ /POST
+
+❌ /PUT
+
+❌ /DELETE
+
 ### /transactions
 
 ❌ /POST

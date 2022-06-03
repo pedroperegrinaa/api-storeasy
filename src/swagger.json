@@ -15,6 +15,66 @@
         }
     ],
     "paths": {
+        "/clients": {
+            "get": {
+                "summary": "Clients",
+                "description": "Lista todos os carrinhos",
+                "tags": [
+                    "Clients"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "error"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Clients",
+                "description": "Cria um carrinho no banco de dados (o code não pode ser repetido)",
+                "tags": [
+                    "Clients"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "ref": "#/components/schemas/Clients",
+                                "example": {
+                                    "line_1": "375, Av. General Justo, Centro",
+                                    "line_2": "8º andar",
+                                    "zip_code": "20021130",
+                                    "city": "Rio de Janeiro",
+                                    "state": "RJ",
+                                    "country": "BR",
+                                    "birthdate": "05/03/1984",
+                                    "name": "Falcao",
+                                    "email": "falcaocaocao@avengers.com",
+                                    "code": "MY_CUSTOMER_001",
+                                    "document": "93095135274",
+                                    "type": "individual",
+                                    "document_type": "CPF",
+                                    "gender": "male",
+                                    "country_code": "55",
+                                    "area_code": "21",
+                                    "number": "000000000"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "error"
+                    }
+                }
+            }
+        },
         "/carts": {
             "get": {
                 "summary": "Carts",
@@ -138,6 +198,77 @@
                     },
                     "price": {
                         "type": "number"
+                    }
+                }
+            },
+            "Clients": {
+                "type": "object",
+                "properties": {
+                    "address": {
+                        "type": "object",
+                        "properties": {
+                            "line_1": {
+                                "type": "stirng"
+                            },
+                            "line_2": {
+                                "type": "string"
+                            },
+                            "zip_code": {
+                                "type": "string"
+                            },
+                            "city": {
+                                "type": "string"
+                            },
+                            "state": {
+                                "type": "string"
+                            },
+                            "country": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "birthdate": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "code": {
+                        "type": "number"
+                    },
+                    "document": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "document_type": {
+                        "type": "string"
+                    },
+                    "gender": {
+                        "type": "stirng"
+                    },
+                    "phones": {
+                        "type": "object",
+                        "properties": {
+                            "mobile_phone": {
+                                "type": "object",
+                                "properties": {
+                                    "country_code": {
+                                        "type": "string"
+                                    },
+                                    "area_code": {
+                                        "type": "string"
+                                    },
+                                    "number": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }

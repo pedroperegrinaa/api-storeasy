@@ -2,6 +2,10 @@ import { cpf } from "cpf-cnpj-validator";
 import { response } from "express";
 import pagarme from "pagarme";
 
+import pagarmeApi from "../src/services/api";
+
+const sdk = require("api")("@pagarme/v5#10ldz43cl0h6sa78");
+
 class PagarMeProvider {
   async process({
     transactionCode,
@@ -116,13 +120,15 @@ class PagarMeProvider {
       ...metadataParams,
     };
 
-    // const client = await pagarme.client.connect({
-    //   api_key: process.env.PAGARME_API_KEY,
-    // });
+    ////////////////////////////////////////////////////////////////////
 
-    // const response = await client.transactions.create(transactionParams);
+    const client = await pagarme.client.connect({
+      api_key: "sk_test_mxrQEmybfvI0EBXo",
+    });
 
-    console.debug("transactionParams", transactionParams);
+    const response = await client.transactions.create(transactionParams);
+
+    console.debug("transactionParams", response);
 
     return {
       transactionID: response.id,

@@ -11,6 +11,9 @@
   "author": "pedroperegrinaa <57403682+pedroperegrinaa@users.noreply.github.com>",
   "license": "MIT",
   "dependencies": {
+    "@pagarme/sdk": "^5.6.0",
+    "api": "^4.5.1",
+    "axios": "^0.27.2",
     "body-parser": "^1.20.0",
     "cors": "^2.8.5",
     "cpf-cnpj-validator": "^1.0.3",
