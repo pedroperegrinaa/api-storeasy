@@ -3,6 +3,7 @@ import CartsController from "./controllers/CartsController.js";
 import TransactionsController from "./controllers/TransactionsController.js";
 import PostbackController from "./controllers/PostbackController.js";
 import ClientsController from "./controllers/ClientsController.js";
+import CreditCardController from "./controllers/CreditCardController.js";
 
 const routes = new Router();
 
@@ -17,5 +18,7 @@ routes.post("/postbacks/pagarme", PostbackController.pagarme);
 
 routes.get("/clients", ClientsController.index);
 routes.post("/clients", ClientsController.create);
+
+routes.post("/creditcard", CreditCardController.create);
 
 export default routes;

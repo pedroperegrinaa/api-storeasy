@@ -62,6 +62,16 @@ Futuramente o `docker-compose.yml` será criado.
 
 ❌ /DELETE
 
+### /creditcard
+
+❌ /GET
+
+✅ /POST
+
+❌ /PUT
+
+❌ /DELETE
+
 ### /transactions
 
 ❌ /POST

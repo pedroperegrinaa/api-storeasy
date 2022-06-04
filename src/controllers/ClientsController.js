@@ -79,7 +79,7 @@ class ClientsController {
         console.log(error.response.data);
       });
 
-    console.log(response);
+    console.log("response: ", response);
 
     return res.status(200).json(response);
   }
