@@ -1,9 +1,10 @@
 import { Router } from 'express'
-import CartsController from './controllers/CartsController.js'
-import TransactionsController from './controllers/TransactionsController.js'
+import CartsController from './controllers/CartController.js'
+import TransactionsController from './controllers/TransactionController.js'
 import PostbackController from './controllers/PostbackController.js'
-import ClientsController from './controllers/ClientsController.js'
+import ClientsController from './controllers/ClientController.js'
 import CreditCardController from './controllers/CreditCardController.js'
+import TokenController from './controllers/TokenController.js'
 
 const routes = new Router()
 
@@ -12,7 +13,7 @@ routes.post('/carts', CartsController.create)
 routes.put('/carts/:id', CartsController.update)
 routes.delete('/carts/:id', CartsController.delete)
 
-routes.post('/tokens', TokensController.store)
+routes.post('/tokens', TokenController.store)
 
 /* PAGARME ROUTES */
 

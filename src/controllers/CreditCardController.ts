@@ -1,11 +1,8 @@
-const sdk = require("api")("@pagarme/v5#10ldz43cl0h6sa78");
-
-import pagarmeApi from "../services/api";
+/* eslint-disable camelcase */
+import pagarmeApi from '../services/api'
 
 class CreditCardController {
-  async index(req, res) {}
-
-  async create(req, res) {
+  async create (req, res) {
     const {
       line_1,
       line_2,
@@ -25,8 +22,8 @@ class CreditCardController {
       brand,
       label,
 
-      customer_id,
-    } = req.body;
+      customer_id
+    } = req.body
 
     const billing_address = {
       line_1,
@@ -34,12 +31,12 @@ class CreditCardController {
       zip_code,
       city,
       state,
-      country,
-    };
+      country
+    }
 
     const options = {
-      verify_card,
-    };
+      verify_card
+    }
 
     const response = await pagarmeApi
       .post(`/customers/${customer_id}/cards`, {
@@ -52,17 +49,17 @@ class CreditCardController {
         exp_year,
         cvv,
         brand,
-        label,
+        label
       })
       .then((response) => {
-        console.log("response: ", response.data);
+        console.log('response: ', response.data)
       })
       .catch((error) => {
-        console.log(error.response.data);
-      });
+        console.log(error.response.data)
+      })
 
-    return res.status(200).json(response);
+    return res.status(200).json(response)
   }
 }
 
-export default new CreditCardController();
+export default new CreditCardController()

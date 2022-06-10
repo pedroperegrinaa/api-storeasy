@@ -44,14 +44,14 @@ class TransactionsController {
         costumerEmail: Yup.string().required().email(),
         costumerMobile: Yup.string()
           .required()
-          .test('is-valid-phone', '${path} is not a mobile number', (value) =>
+          .test('is-valid-phone', `${path} is not a mobile number`, (value:string) =>
             parsePhoneNumber(value, 'BR').isValid()
           ),
         costumerDocument: Yup.string()
           .required()
           .test(
             'is-valid-document',
-            '${path} is not a valid CPF/CNPJ',
+            `${path} is not a valid CPF/CNPJ`,
             (value) => cpf.isValid(value) || cnpj.isValid(value)
           ),
         billingAddress: Yup.string().required(),

@@ -1,3 +1,4 @@
+/* eslint-disable no-throw-literal */
 import Cart from '../schemas/Cart'
 import { v4 as uuidv4 } from 'uuid'
 import Transaction from '../schemas/Transaction'
@@ -6,8 +7,8 @@ import PagarMeProvider from '../../providers/PagarMeProvider'
 class TransactionService {
   paymentProvider
 
-  constructor (paymentProvider) {
-    this.paymentProvider = paymentProvider || new PagarMeProvider()
+  constructor () {
+    this.paymentProvider = new PagarMeProvider()
   }
 
   async process ({

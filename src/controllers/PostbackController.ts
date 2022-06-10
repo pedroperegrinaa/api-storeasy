@@ -4,7 +4,7 @@ import TransactionService from '../services/TransactionService'
 
 class PostbackController {
   async pagarme (req, res) {
-    const { id, object, current_status } = req.body
+    const { id, object, currentStatus } = req.body
 
     // pagarme.postback.verifySignature(
     //   "api_key",
@@ -20,11 +20,11 @@ class PostbackController {
           return res.status(404)
         }
 
-        const service = new TransactionService()
+        const service = new TransactionService(pagarme)
 
         await service.updateStatus({
           code: transaction.code,
-          providerStatus: current_status
+          providerStatus: currentStatus
         })
 
         return res.status(200).json(service)
