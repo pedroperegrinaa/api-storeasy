@@ -12,6 +12,10 @@ routes.post("/carts", CartsController.create);
 routes.put("/carts/:id", CartsController.update);
 routes.delete("/carts/:id", CartsController.delete);
 
+routes.post("/tokens", TokensController.store);
+
+/* PAGARME ROUTES */
+
 routes.post("/transactions", TransactionsController.create);
 
 routes.post("/postbacks/pagarme", PostbackController.pagarme);
