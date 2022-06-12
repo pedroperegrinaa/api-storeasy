@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken'
-import User from '../schemas/User.js'
+import User from '../schemas/User'
 
 import bcrypt from 'bcrypt'
 

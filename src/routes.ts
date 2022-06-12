@@ -1,10 +1,10 @@
 import { Router } from 'express'
-import CartsController from './controllers/CartController.js'
-import TransactionsController from './controllers/TransactionController.js'
-import PostbackController from './controllers/PostbackController.js'
-import ClientsController from './controllers/ClientController.js'
-import CreditCardController from './controllers/CreditCardController.js'
-import TokenController from './controllers/TokenController.js'
+import CartsController from './controllers/CartController'
+import TransactionsController from './controllers/TransactionController'
+import PostbackController from './controllers/PostbackController'
+import ClientsController from './controllers/ClientController'
+import CreditCardController from './controllers/CreditCardController'
+import TokenController from './controllers/TokenController'
 
 const routes = new Router()
 

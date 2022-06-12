@@ -20,7 +20,7 @@ class PostbackController {
           return res.status(404)
         }
 
-        const service = new TransactionService(pagarme)
+        const service = new TransactionService()
 
         await service.updateStatus({
           code: transaction.code,
