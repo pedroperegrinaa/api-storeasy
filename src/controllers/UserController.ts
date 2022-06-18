@@ -13,7 +13,7 @@ class UserController {
     return res.json(users)
   }
 
-  public async store (req: Request, res: Response): Promise<Response> {
+  public async create (req: Request, res: Response): Promise<Response> {
     const { name, email, password } = req.body
 
     if (!name || !email || !password) {
@@ -78,7 +78,7 @@ class UserController {
     }
   }
 
-  public async destroy (req: Request, res: Response): Promise<Response> {
+  public async delete (req: Request, res: Response): Promise<Response> {
     const id = req.params.id
 
     if (!id) {
