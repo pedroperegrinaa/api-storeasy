@@ -1,27 +1,28 @@
-import Cart from "../models/Cart";
-import { v4 as uuidv4 } from "uuid";
-import Transaction from "../models/Transaction";
-import PagarMeProvider from "../../providers/PagarMeProvider";
+/* eslint-disable no-throw-literal */
+import Cart from '../schemas/Cart'
+import { v4 as uuidv4 } from 'uuid'
+import Transaction from '../schemas/Transaction'
+import PagarMeProvider from '../../providers/PagarMeProvider'
 
 class TransactionService {
-  paymentProvider;
+  paymentProvider
 
-  constructor(paymentProvider) {
-    this.paymentProvider = paymentProvider || new PagarMeProvider();
+  constructor () {
+    this.paymentProvider = new PagarMeProvider()
   }
 
-  async process({
+  async process ({
     cartCode,
     paymentType,
     installments,
     costumer,
     billing,
-    creditCard,
+    creditCard
   }) {
-    const cart = await Cart.findOne({ code: cartCode });
+    const cart = await Cart.findOne({ code: cartCode })
 
     if (!cart) {
-      throw `Cart ${cartCode} was not found.`;
+      throw `Cart ${cartCode} was not found.`
     }
 
     const transaction = await Transaction.create({
@@ -30,7 +31,7 @@ class TransactionService {
       total: cart.price,
       paymentType,
       installments,
-      status: "started",
+      status: 'started',
       costumerName: costumer.name,
       costumerEmail: costumer.email,
       costumerMobile: costumer.mobile,
@@ -40,8 +41,8 @@ class TransactionService {
       billingNeighborhood: billing.neighborhood,
       billingCity: billing.city,
       billingState: billing.state,
-      billingZipCode: billing.zipCode,
-    });
+      billingZipCode: billing.zipCode
+    })
 
     // console.log(items);
 
@@ -52,32 +53,32 @@ class TransactionService {
       installments,
       creditCard,
       costumer,
-      billing,
-    });
+      billing
+    })
 
     await transaction.updateOne({
       transactionId: response.transactionId,
       status: response.status,
-      processorResponse: response.processorResponse,
-    });
+      processorResponse: response.processorResponse
+    })
 
-    return transaction;
+    return transaction
   }
 
-  async updateStatus({ code, providerStatus }) {
-    const transaction = await Transaction.findOne({ code });
+  async updateStatus ({ code, providerStatus }) {
+    const transaction = await Transaction.findOne({ code })
 
     if (!transaction) {
-      throw `Transaction ${code} was not found.`;
+      throw `Transaction ${code} was not found.`
     }
-    const status = await this.paymentProvider.translateStatus(providerStatus);
+    const status = await this.paymentProvider.translateStatus(providerStatus)
 
     if (!status) {
-      throw `Status ${providerStatus} was not found.`;
+      throw `Status ${providerStatus} was not found.`
     }
 
-    await transaction.updateOne({ status });
+    await transaction.updateOne({ status })
   }
 }
 
-export default TransactionService;
+export default TransactionService

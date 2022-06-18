@@ -1,13 +1,13 @@
-import * as Yup from "yup";
-import { parsePhoneNumber } from "libphonenumber-js";
-import { cpf, cnpj } from "cpf-cnpj-validator";
+import * as Yup from 'yup'
+import { parsePhoneNumber } from 'libphonenumber-js'
+import { cpf, cnpj } from 'cpf-cnpj-validator'
 
-import Cart from "../models/Cart";
+import Cart from '../schemas/Cart'
 
-import TransactionService from "../services/TransactionService";
+import TransactionService from '../services/TransactionService'
 
 class TransactionsController {
-  async create(req, res) {
+  async create (req, res) {
     try {
       const {
         cartCode,
@@ -26,32 +26,32 @@ class TransactionsController {
         creditCardNumber,
         creditCardExpiration,
         creditCardHolderName,
-        creditCardCvv,
-      } = req.body;
+        creditCardCvv
+      } = req.body
 
       const schema = Yup.object().shape({
         cartCode: Yup.string().required(),
-        paymentType: Yup.mixed().oneOf(["billet", "credit_card"]).required(),
+        paymentType: Yup.mixed().oneOf(['billet', 'credit_card']).required(),
         installments: Yup.number()
           .required()
           .min(1)
-          .when("paymentType", (paymentType, schema) => {
-            return paymentType === "credit_card"
+          .when('paymentType', (paymentType, schema) => {
+            return paymentType === 'credit_card'
               ? schema.max(12)
-              : schema.max(1);
+              : schema.max(1)
           }),
         costumerName: Yup.string().required().min(3),
         costumerEmail: Yup.string().required().email(),
         costumerMobile: Yup.string()
           .required()
-          .test("is-valid-phone", "${path} is not a mobile number", (value) =>
-            parsePhoneNumber(value, "BR").isValid()
+          .test('is-valid-phone', `${path} is not a mobile number`, (value:string) =>
+            parsePhoneNumber(value, 'BR').isValid()
           ),
         costumerDocument: Yup.string()
           .required()
           .test(
-            "is-valid-document",
-            "${path} is not a valid CPF/CNPJ",
+            'is-valid-document',
+            `${path} is not a valid CPF/CNPJ`,
             (value) => cpf.isValid(value) || cnpj.isValid(value)
           ),
         billingAddress: Yup.string().required(),
@@ -61,36 +61,36 @@ class TransactionsController {
         billingState: Yup.string().required(),
         billingZipCode: Yup.string().required(),
         creditCardNumber: Yup.string().when(
-          "paymentType",
+          'paymentType',
           (paymentType, schema) =>
-            paymentType === "credit_card" ? schema.required() : schema
+            paymentType === 'credit_card' ? schema.required() : schema
         ),
         creditCardExpiration: Yup.string().when(
-          "paymentType",
+          'paymentType',
           (paymentType, schema) =>
-            paymentType === "credit_card" ? schema.required() : schema
+            paymentType === 'credit_card' ? schema.required() : schema
         ),
         creditCardHolderName: Yup.string().when(
-          "paymentType",
+          'paymentType',
           (paymentType, schema) =>
-            paymentType === "credit_card" ? schema.required() : schema
+            paymentType === 'credit_card' ? schema.required() : schema
         ),
-        creditCardCvv: Yup.string().when("paymentType", (paymentType, schema) =>
-          paymentType === "credit_card" ? schema.required() : schema
-        ),
-      });
+        creditCardCvv: Yup.string().when('paymentType', (paymentType, schema) =>
+          paymentType === 'credit_card' ? schema.required() : schema
+        )
+      })
 
       if (!(await schema.isValid(req.body))) {
-        return res.status(400).json({ error: "Validation fails." });
+        return res.status(400).json({ error: 'Validation fails.' })
       }
 
-      const cart = Cart.findOne({ code: cartCode });
+      const cart = Cart.findOne({ code: cartCode })
 
       if (!cart) {
-        return res.status(400).json({ error: "Cart not found." });
+        return res.status(400).json({ error: 'Cart not found.' })
       }
 
-      const service = new TransactionService();
+      const service = new TransactionService()
 
       const response = await service.process({
         cartCode,
@@ -100,8 +100,8 @@ class TransactionsController {
         costumer: {
           name: costumerName,
           email: costumerEmail,
-          mobile: parsePhoneNumber(costumerMobile, "BR").format("E.164"),
-          document: costumerDocument,
+          mobile: parsePhoneNumber(costumerMobile, 'BR').format('E.164'),
+          document: costumerDocument
         },
         billing: {
           address: billingAddress,
@@ -109,21 +109,21 @@ class TransactionsController {
           neighborhood: billingNeighborhood,
           city: billingCity,
           state: billingState,
-          zipCode: billingZipCode,
+          zipCode: billingZipCode
         },
         creditCard: {
           number: creditCardNumber,
           expiration: creditCardExpiration,
           holderName: creditCardHolderName,
-          cvv: creditCardCvv,
-        },
-      });
+          cvv: creditCardCvv
+        }
+      })
 
-      return res.json(response);
+      return res.json(response)
     } catch (error) {
-      return res.status(500).json({ error: error.message });
+      return res.status(500).json({ error: error.message })
     }
   }
 }
 
-export default new TransactionsController();
+export default new TransactionsController()
