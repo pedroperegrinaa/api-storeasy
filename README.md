@@ -31,7 +31,7 @@ pnpm start
 ```
 
 
-Endpoints da API em: http://localhost:5000/doc
+Endpoints da API em: http://localhost:5000/doc/#/
 
 ## .env
 
