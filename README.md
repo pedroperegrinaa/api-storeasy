@@ -8,74 +8,45 @@
 
 ## Criando o ambiente
 
-    git clone https://github.com/pedroperegrinaa/api-storeasy.git
-    cd api-storeasy
-    echo "PORT=5000" >> .env
-    echo "MONGODB_URI=" >> .env
-    echo "PAGARME_WEBHOOK_URL=" >> .env
-    echo "PAGARME_API_KEY=" >> env #ainda não tenho a key
+```bash
+git clone https://github.com/pedroperegrinaa/api-storeasy.git
+
+cd api-storeasy
+
+echo "PORT=5000" >> .env
+```
 
 ## Rodando o projeto
 
-    yarn install
-    yarn start
+Instale o `pnpm`: 
 
-Futuramente o `docker-compose.yml` será criado.
+```bash
+npm install -g pnpm
+```
+Inicie o projeto:
 
-## Swagger
+```bash
+pnpm install
+pnpm start
+```
 
-<!-- ```diff
 
-@@ /carts @@
+Endpoints da API em: http://localhost:5000/doc
 
-+ /GET
-+ /POST
-- /PUT
-- /DELETE
+## .env
 
-@@ /transactions @@
+Para o backend funcionar direito, você precisa completar esse arquivo no `.env` com tudo que falta:
 
-- /POST
+```env
+PORT=5000
+MONGODB_URI=mongodb://localhost:27017/tsnode
+PAGARME_API_PUBLIC_KEY=
+PAGARME_API_PRIVATE_KEY=
+API_URL: https://api.pagar.me/core/v5
+BASIC=
+```
 
-@@ /postbacks @@
+- **MONGODB_URI**: URI do mongodb. Usei o mongodb pelo docker, recomendo que faça o mesmo por conta da facilidade.
+-  **PAGARME_API**: Colete as 2 keys no site do [pagarme](https://pagar.me)
+- **BASIC**: Key depois de passar por um Basic64. Precisa disso pra acessar a API, é **importante**. Olhe a [doc do pagar.me](http://docs.pagar.me/reference/)
 
-- /PAGARME
-``` -->
-
-### /carts
-
-✅ /GET
-
-✅ /POST
-
-✅ /PUT
-
-✅ /DELETE
-
-### /clients
-
-✅ /GET
-
-✅ /POST
-
-❌ /PUT
-
-❌ /DELETE
-
-### /creditcard
-
-❌ /GET
-
-✅ /POST
-
-❌ /PUT
-
-❌ /DELETE
-
-### /transactions
-
-❌ /POST
-
-## Demo:
-
-Testes da API em: http://localhost:5000/doc
